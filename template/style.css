@@ -1,0 +1,10 @@
+body {
+  background:lightgoldenrodyellow;
+  color: darkblue;
+}
+
+.custom-card-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
