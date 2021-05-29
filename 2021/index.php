@@ -29,7 +29,7 @@
     <?php } ?>
   </div>
   <div class="row">
-    <?php foreach($products::all() as $product){ ?>
+    <?php foreach(Product::all() as $product){ ?>
       <div class="col-md-4">
         <div class="card m-2">
           <h4 class="card-header"><?php echo $product['name'] ?></h4>
