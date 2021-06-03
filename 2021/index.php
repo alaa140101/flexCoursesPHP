@@ -1,15 +1,10 @@
 <?php $page_title = 'Home'; ?>
 <?php require_once __DIR__.'/template/header.php';?>
 <?php require 'classes/Service.php' ?>
-<?php require 'classes/Product.php' ?>
+<?php require 'config/database.php' ?>
 
 <?php $services = new Service; ?>
-<?php 
-  $products = new Product; 
-  $products->taxRate = 0.5;
-?>
-
-
+<?php $products = $mysqli->query("SELECT * FROM products")->fetch_all(MYSQLI_ASSOC); ?>
   <h1>welcome to our website</h1>
 
   <div class="row">
@@ -29,17 +24,18 @@
     <?php } ?>
   </div>
   <div class="row">
-    <?php foreach(Product::all() as $product){ ?>
-      <div class="col-md-4">
-        <div class="card m-2">
-          <h4 class="card-header"><?php echo $product['name'] ?></h4>
-          <div class="card-body">
-            <p>Price: <?php echo $products->getTotal($product['price']); ?></p>
-            </p>
-          </div>
+  <?php foreach($products as $product) {  ?>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <img class="card-img-top" src="<?php echo $product['image-url'];?>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><?php echo $product['name'];?></h5>
+          <p class="card-text"><?php echo $product['description'];?></p>
+          <p class="card-text">Price: <?php echo $product['price'];?></p>
         </div>
       </div>
-    <?php } ?>
+    </div>
+  <?php } ?>
   </div>
 
 
